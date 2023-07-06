@@ -1,0 +1,37 @@
+
+<h1 class="mt-5">Transactions</h1>
+<div class="card">
+  <div class="table-responsive p-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Sender</th>
+          <th scope="col">Receiver</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Total Paid Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trans of transactions">
+          <td>{{trans.id}}</td>
+          <td>{{trans.sender}}</td>
+          <td>{{trans.receiver}}</td>
+          <td>{{trans.totalAmount}}</td>
+          <td style="cursor: pointer; text-decoration: underline;" (click)="getTransactionDetails(trans.id)">{{trans.totalPaidAmount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="d-flex justify-content-end mt-3" *ngIf="totalRows>0">
+  <ngb-pagination [(page)]="pageNumber!"
+                  [pageSize]="pageSize!"
+                  [collectionSize]="totalRows!"
+                  (pageChange)="loadPage($event)"
+                  [maxSize]="5"
+                  [rotate]="true"
+                  [boundaryLinks]="true">
+  </ngb-pagination>
+</div>
